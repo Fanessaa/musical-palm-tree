@@ -57,11 +57,4 @@ st.text('''Dari grafik dibawah, dapat terliahat frekeunsi kata yang terdapat dal
 artikel adalah “BUMN”, “Erick”, “Thohrir”, “Program” dan “Ekonomi”. Dari kelimat kata tersebut, dapat disimpulkan bahwa menteri BUMN ingin melaksanakan sebuah program 
 untuk bisnis-bisinis untuk perkembangan eonomi Indonesia.''')
 
-df['clean_tweets'] = df['clean_tweets'].apply(lambda x: word_tokenize(str(x)))
-sen = [word for sen in df['clean_tweets'] for word in sen]
-fqdist = FreqDist(sen)
-most_common_word = fqdist.most_common(20)
-fig = fqdist.plot(30,cumulative=False)
-st.pyplot(fig)
-
 
