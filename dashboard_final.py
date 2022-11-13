@@ -78,7 +78,7 @@ st.dataframe(df_stat)
 # grafik sentimen
 
 df_sentimen = pd.read_csv('sentimen_labels.csv')
-df_sentimen.set_index('Counts')
+df_sentimen = df_sentimen.set_index('Counts')
 st.bar_chart(df_sentimen)
 
 st.text(''' Seperti yang dilihat dari hasil statistika yang di dapatkan dari prediction model, nilai mean dan nilai median tidak beda jauh, dan nilai 
