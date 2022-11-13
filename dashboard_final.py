@@ -7,8 +7,6 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
-from nltk.tokenize import word_tokenize
-from nltk.probability import FreqDist
 
 st.set_page_config(layout="wide")
 
