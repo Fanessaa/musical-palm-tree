@@ -56,7 +56,7 @@ dalam artikel adalah “BUMN”, “Erick”, “Thohrir”, “Program” dan �
 melaksanakan sebuah program untuk bisnis-bisinis untuk perkembangan eonomi Indonesia.''')
 
 df_common_artikel = pd.read_csv('common_words_artikel.csv')
-st.line_chart(data=ommon_artikel, *, x='Kata', y='Counts', width=0, height=0, use_container_width=True)
+st.line_chart(data=ommon_artikel, x='Kata', y='Counts', width=0, height=0, use_container_width=True)
 
 
 st.text('''Dari grafil frekuensi kata dari tweets, dapat dilihat bahwa publik sedangan membahas Erick Thonir, yang mereupakan menteri BUMN di Indonesia. Publik 
