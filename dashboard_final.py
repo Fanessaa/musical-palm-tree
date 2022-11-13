@@ -6,11 +6,15 @@
 
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
+from nltk.tokenize import word_tokenize
+from nltk.probability import FreqDist
 
 st.set_page_config(layout="wide")
 
 st.title("Sentiment Analisis terhadap kata 'BUMN'")
 
+# Business understanding
 st.header('Business Understanding')
 st.text('''Dengan maraknya berita mengenai isu ekonomi dalam negeri dan di luar negeri. Banyak sekali orang-orang, terlebih mereka yang memiliki usaha 
 khawatir dengan nasib bisnis mereka Pada kesempatan kali ini, saya ingin menganalisa bagaimana sentimen publik terhadap isu ini. 
@@ -19,6 +23,7 @@ yang mengatur hal-hal bersangkutan dengan bisnis, merekalah yang memiliki peran 
 kinerja pemerinatah kan di cari. Sosial media, Twitter juga akan digunakan sebagai platform untuk mendapatkan informasi terhadap reaksi, 
 perasaan dan pendapat rakyat terhadap BUMN.''')
 
+# Data understanding
 st.header('Data understanding')
 st.subheader('Data collection')
 st.text('''Untuk mencari tahu mengenai kejadian-kejadian yang baru-baru ini terjadi yang berkaitan dengan kata kunci 'BUMN', salah satu berita terbaru 
@@ -28,14 +33,35 @@ Bakti BUMN Perkuat Ekonomi Kerakyataan’. Dengan menggunakan artikel tersebut, 
 df_article = pd.read_csv('article.csv')
 st.dataframe(df_article)
 
-st.text("Opini publik terhadap isu ini akan diperoleh dari sosial media Twitter menggunakan kata ‘BUMN’ untuk melihat sentimen publik. ")
+st.text("Opini publik terhadap isu ini akan diperoleh dari sosial media Twitter menggunakan kata ‘BUMN’ untuk melihat sentimen publik. Seperti dibawah ini:")
 df_tweets = pd.read_csv('tweets.csv')
 st.dataframe(df_tweets)
 
-st.text('''Sebelum analisa dilakukan, data yang didapatkan dibersihkan terlebih dahulu, seperti menghapus tanda baca, angka, emotikon, dan lin-lain 
-yang kurang berpengaruh di analisa kali ini. Data dari sosial media yang duplikat juga dihapus untuk mengurangi bias dan kata-kata slang diganti. Dan 
-hasilnya dapat dilihat dibawah ini: ''')
+# Data preprocessing
+st.subheader('Data preprocessing')
+st.text('''Sebelum analisa dilakukan, data yang didapatkan dibersihkan terlebih dahulu, seperti melakukan casefolding untuk mengubah semua kata menjadi huruf kecil, 
+menghapus tanda baca, angka, emotikon, dan lin-lain yang kurang berpengaruh di analisa kali ini. Data dari sosial media yang duplikat juga dihapus untuk mengurangi 
+bias dan kata-kata slang diganti. Dan hasilnya dapat dilihat dibawah ini: ''')
 
 df_article_clean = pd.read_csv('article_clean.csv')
 st.dataframe(df_article_clean)
+st.caption("dataframe berisi artikel setelah cleaning")
+
+df_tweets_clean = pd.read_csv('tweets_clean.csv')
+st.dataframe(df_tweets_clean)
+st.caption("dataframe berisi tweets setelah cleaning")
+
+# Data Analisis
+st.subheader('Data Analisis')
+st.text('''Dari grafik dibawah, dapat terliahat frekeunsi kata yang terdapat dalam artikel. Dapat dilihat bahwa kata-kata yang dominan atau seringkali muncul dalam 
+artikel adalah “BUMN”, “Erick”, “Thohrir”, “Program” dan “Ekonomi”. Dari kelimat kata tersebut, dapat disimpulkan bahwa menteri BUMN ingin melaksanakan sebuah program 
+untuk bisnis-bisinis untuk perkembangan eonomi Indonesia.''')
+
+df['clean_tweets'] = df['clean_tweets'].apply(lambda x: word_tokenize(str(x)))
+sen = [word for sen in df['clean_tweets'] for word in sen]
+fqdist = FreqDist(sen)
+most_common_word = fqdist.most_common(20)
+fig = fqdist.plot(30,cumulative=False)
+st.pyplot(fig)
+
 
