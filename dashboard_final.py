@@ -7,6 +7,8 @@
 import streamlit as st
 import pandas as pd
 
+st.set_page_config(layout="wide")
+
 st.title("Sentiment Analisis terhadap kata 'BUMN'")
 
 st.header('Business Understanding')
