@@ -102,11 +102,10 @@ st.caption(''' Data setelah nilai kategori sentimen diberikan nilai numerik''')
 st.dataframe(df_sentimen_ml)
 
 st.subheader('Evaluation')
-
 # accuracy table
 df_classif_report = pd.read_csv('classification_report.csv')
 st.dataframe(df_classif_report)
-t.text('''Dari confusion matrix terhadap prediction model yang dibuat, model memiliki nilai akuransi yang cukup tinggi, yaitu 0.833. Tidak hanya itu, model 
+st.text('''Dari confusion matrix terhadap prediction model yang dibuat, model memiliki nilai akuransi yang cukup tinggi, yaitu 0.833. Tidak hanya itu, model 
 juga dapat memprediksi dengan benar dengan nilai yang tinggi seperti yang terlihat dari hasil precision.''')
 
 st.subheader('Prediction')
