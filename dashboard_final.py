@@ -112,7 +112,7 @@ st.subheader('Prediction')
 # percentage 
 df_predict_percent = pd.read_csv('df_predict_count.csv')
 st.dataframe(df_predict_percent)
-st.text(''' Prediction model memprediksi bahwa terdapat hampir 60% orang yang memiliki reaksi positif''')
+st.text('''Prediction model memprediksi bahwa terdapat hampir 60% orang yang memiliki reaksi positif''')
 
 st.header('Reporting')
 st.text('''Dari hasil penemuan, ditemukan bahwa publik memiliki sentimen positif terhadap keputusan yang diambil oleh menteri BUMN terhadap masalah. Dari 
