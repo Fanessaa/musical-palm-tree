@@ -99,7 +99,7 @@ atau netral. Data yang digunakan adakah tweet yang didapatkan dengan kata kunci 
 
 df_sentimen_ml = pd.read_csv('sentiment_ml.csv')
 st.caption(''' Data setelah nilai kategori sentimen diberikan nilai numerik''')
-st.bar_chart(df_sentimen_ml)
+st.dataframe(df_sentimen_ml)
 
 st.subheader('Evaluation')
 
