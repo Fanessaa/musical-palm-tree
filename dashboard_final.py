@@ -58,41 +58,64 @@ melaksanakan sebuah program untuk bisnis-bisinis untuk perkembangan eonomi Indon
 df_common_artikel = pd.read_csv('common_words_artikel.csv')
 st.line_chart(data=df_common_artikel, x='Kata', y='Counts', width=0, height=0, use_container_width=True)
 
-
-st.text('''Dari grafil frekuensi kata dari tweets, dapat dilihat bahwa publik sedangan membahas Erick Thonir, yang mereupakan menteri BUMN di Indonesia. Publik 
+st.text('''Dari grafik frekuensi kata dari tweets di bawah, dapat dilihat bahwa publik sedangan membahas Erick Thonir, yang mereupakan menteri BUMN di Indonesia. Publik 
 sedang melihat apa yang dilakukan dan kinerja menteri twehadap masalah ini. Tidak hanya BUMN, publik juga membahas mengenai UMKM, Usaha Mikro Kecil 
 dan Menengah, yang tidak mungkin saja memiliki sangkut paut di dalam masalah ini. Publik juga membahas mengenai ekonomi negara dan kondisi keuangan 
 yang bisa jadi alasan dari perbuatan BUMN. ''')
 
-# grafik frekuensi kata tweets
+df_common_tweets = pd.read_csv('common_words_tweets.csv')
+st.line_chart(data=df_common_tweets, x='Kata', y='Counts', width=0, height=0, use_container_width=True)
 
-st.text('''Sentimen analisis juga dilakukan terhadap tweets, dan dari hasil penemuan, dapat disumpulakn bahwa kebanyakn dari publik memiliki reaksi positif 
-terhadap BUMN seperti yang terlihat di grafik bawah.''')
+st.text('''Sentimen analisis juga dilakukan terhadap tweets, pertama-pertama, hasil tweets yang ditemukan akan dibandingkan dengan list kata-kata yang memiliki arti positif 
+dan negatif. Dalam satu tweet, akan dihitung seberapa banyak kata positif dan negatif, jika lebih banyak nilai positif, maka akan diberi label 1, jika lebih banyak nilai negatif, 
+akan diberi label 0, jika tidak perbedaan akan diberi nilai 0 dan. Dari hasil penemuan, dapat disumpulakn bahwa kebanyakn dari publik memiliki reaksi positif terhadap BUMN seperti 
+yang terlihat di hasil analisa di bawah.''')
+
+# statistics
+df_stat = pd.read_csv('statistics.csv')
+st.dataframe(df_stat)
 
 # grafik sentimen
+
+df_sentimen = pd.read_csv('sentimen_labels.csv')
+st.bar_chart(df_sentimen)
+
+st.text(''' Seperti yang dilihat dari hasil statistika yang di dapatkan dari prediction model, nilai mean dan nilai median tidak beda jauh, dan nilai mean 
+lebih rendah dari nilai median, dapat disimpulkan bahwa model hampir memiliki bilai distribusi normal. Hal ini didukung dengan grafik distribusi label-label.''')
+
+df_count_sentimen = pd.read_csv('count_sentiment.csv')
+st.bar_chart(df_count_sentimen)
+
+st.text(''' Dari bar chart di atas, dapat dilihat bahwa kebanyakan dari pengguna Twitter memiliki reaksi positif terhadap tindakan yang diambil pemerintah,
+nilai pengguna Twitter dan memiliki reaksi negatif tidak sebanyak mereka yang bereaksi positif''')
 
 # Data processing
 st.header('Data Processing')
 st.subheader('Modeling')
 st.text('''Naive Bayes digunakan untuk mengkonstruksi sebuah prediction model untuk memprediksi apakah sebuah kalimat memiliki maksud positif atau negatif 
-atau netral. Data yang digunakan adakah tweet yang didapatk dengan kata kunci “BUMN”.''')
+atau netral. Data yang digunakan adakah tweet yang didapatkan dengan kata kunci “BUMN”. Kategori sentiment juga diganti dengan angka numerik, dimana 0 adalah negatif,
+1 adalah positif dan 2 adalah neutral''')
 
-# 
+df_sentimen_ml = pd.read_csv('sentiment_ml.csv')
+st.caption(''' Data setelah nilai kategori sentimen diberikan nilai numerik''')
+st.bar_chart(df_sentimen_ml)
 
 st.subheader('Evaluation')
-st.text('''Dari confusion matrix terhadap prediction model yang dibuat, model memiliki nilai akuransi yang cukup tinggi, yaitu 0.833. Tidak hanya itu, model 
-juga dapat memprediksi dengan benar dengan nilai yang tinggi seperti yang terlihat dari hasil precision.''')
 
 # accuracy table
+df_classif_report = pd.read_csv('classification_report.csv')
+st.dataframe(df_classif_report)
+t.text('''Dari confusion matrix terhadap prediction model yang dibuat, model memiliki nilai akuransi yang cukup tinggi, yaitu 0.833. Tidak hanya itu, model 
+juga dapat memprediksi dengan benar dengan nilai yang tinggi seperti yang terlihat dari hasil precision.''')
 
 st.subheader('Prediction')
-
 # percentage 
+df_predict_percent = pd.read_csv('df_predict_count.csv')
+st.dataframe(df_predict_percent)
+st.text(''' Prediction model memprediksi bahwa terdapat hampir 60% orang yang memiliki reaksi positif''')
 
 st.header('Reporting')
-st.title('''Dari hasil penemuan, ditemukan bahwa publik memiliki sentimen positif terhadap keputusan yang diambil oleh menteri BUMN terhadap masalah. Dari 
+st.text('''Dari hasil penemuan, ditemukan bahwa publik memiliki sentimen positif terhadap keputusan yang diambil oleh menteri BUMN terhadap masalah. Dari 
 hasil analisa text berita, dapat diketahui beberapa tindakan yang diambil oleh menteri untuk memperkuat ekonomi. Dan dari hasil analisa sentimen publik dari 
 Twitter, dapat disimpulkan bahwa kebanyakan dari publik senang atau bependapat positif terhadap keputusan menteri.''') 
-
-
 
