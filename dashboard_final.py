@@ -28,7 +28,7 @@ st.text('''Untuk mencari tahu mengenai kejadian-kejadian yang baru-baru ini terj
 mengenai BUMN akan dipilih dan isinya kan dianalisa. Kali ini, berita berasal dari sumber kompas.com dengan judul ‘Erick Thohir: Folus 
 Bakti BUMN Perkuat Ekonomi Kerakyataan’. Dengan menggunakan artikel tersebut, gambaran terhadap situasi yang sedang terjadi dapat didapatkan.''')
 
-df_article = pd.read_csv('article.csv')
+df_article = pd.read_csv('df_article.csv')
 st.dataframe(df_article)
 
 st.text("Opini publik terhadap isu ini akan diperoleh dari sosial media Twitter menggunakan kata ‘BUMN’ untuk melihat sentimen publik. Seperti dibawah ini:")
@@ -38,20 +38,20 @@ st.dataframe(df_tweets)
 # Data preprocessing
 st.subheader('Data preprocessing')
 st.text('''Sebelum analisa dilakukan, data yang didapatkan dibersihkan terlebih dahulu, seperti melakukan casefolding untuk mengubah semua 
-kata menjadi huruf kecil, menghapus tanda baca, angka, emotikon, dan lin-lain yang kurang berpengaruh di analisa kali ini. Data dari sosial 
+kata menjadi huruf kecil, menghapus tanda baca, angka, emotikon, nilai-nilai duplikat dan lain-lain yang kurang berpengaruh di analisa kali ini. Data dari sosial 
 media yang duplikat juga dihapus untuk mengurangi bias dan kata-kata slang diganti. Dan hasilnya dapat dilihat dibawah ini: ''')
 
 df_article_clean = pd.read_csv('article_clean.csv')
 st.dataframe(df_article_clean)
-st.caption("dataframe berisi artikel setelah cleaning")
+st.caption("Dataframe berisi artikel setelah cleaning")
 
 df_tweets_clean = pd.read_csv('tweets_clean.csv')
 st.dataframe(df_tweets_clean)
-st.caption("dataframe berisi tweets setelah cleaning")
+st.caption("Dataframe berisi tweets setelah cleaning")
 
 # Data Analisis
 st.subheader('Data Analisis')
-st.text('''Dari grafik dibawah, dapat terliahat frekeunsi kata yang terdapat dalam artikel. Dapat dilihat bahwa kata-kata yang dominan atau 
+st.text('''Dari grafik dibawah, dapat terlihat frekeunsi kata yang terdapat dalam artikel. Dapat dilihat bahwa kata-kata yang dominan atau 
 seringkali muncul dalam artikel adalah “BUMN”, “Erick”, “Thohrir”, “Program” dan “Ekonomi”. Dari kelimat kata tersebut, dapat disimpulkan 
 bahwa menteri BUMN ingin melaksanakan sebuah program untuk bisnis-bisinis untuk perkembangan eonomi Indonesia.''')
 
@@ -116,7 +116,14 @@ st.dataframe(df_predict_percent)
 st.text('''Prediction model memprediksi bahwa terdapat hampir 60% orang yang memiliki reaksi positif''')
 
 st.header('Reporting')
+st.text('''Pertama-tama, jika distribusi frekuensi kata antara artikel berita dan tweets hampir mirip, di mana mereka membahas mengenai menteri BUMN. Artikel 
+berita menunjukkan hal-hal, atau solusi yang diberikan oleh menteri Erick, dan dari tweets, dapat dilihat reaksi publik terhadap keputusan yang telah dibuat. 
+Tidak hanya itu, dapat dibuktikan lebih jauh dari hasil sentimen analisis, dimana kebanyakan tweet memiliki reaksi positif terhadap solusi yang diberikan. 
+Untuk melakukan prediksi kedepannya mengenai hal bersangkutan dengan 'BUMN', sebuah prediction model di buat menggunakan Naive Bayes. Model tersebut memiliki
+nilai akurasi yang cukup tinggi, yaitu 0.833, yang menunjukkan bahwa model tidak asal menebak. Tidak hanya itu, nilai precision juga tinggi, yang berarti 
+model berhasil dengan benar mengkategorikan tweet ke dalam sentimen (positif/negatif/neutral) yang tepat''') 
+
+st.subheader('Kesimpulan')
 st.text('''Dari hasil penemuan, ditemukan bahwa publik memiliki sentimen positif terhadap keputusan yang diambil oleh menteri BUMN terhadap masalah. Dari 
 hasil analisa text berita, dapat diketahui beberapa tindakan yang diambil oleh menteri untuk memperkuat ekonomi. Dan dari hasil analisa sentimen publik 
 dari Twitter, dapat disimpulkan bahwa kebanyakan dari publik senang atau bependapat positif terhadap keputusan menteri.''') 
-
