@@ -2,3 +2,6 @@ altair
 pandas
 matplotlib
 streamlit
+ntlk
+scikit-learn
+numpy
