@@ -109,7 +109,7 @@ st.text('''Dari confusion matrix terhadap prediction model yang dibuat, model me
 juga dapat memprediksi dengan benar dengan nilai yang tinggi seperti yang terlihat dari hasil precision.''')
 
 st.subheader('Prediction')
-# percentage 
+# Preditction percentage 
 df_predict_percent = pd.read_csv('df_predict_count.csv')
 st.dataframe(df_predict_percent)
 st.text('''Prediction model memprediksi bahwa terdapat hampir 60% orang yang memiliki reaksi positif''')
