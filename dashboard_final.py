@@ -6,7 +6,6 @@
 
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
 
 st.title("Sentiment Analisis terhadap kata 'BUMN'")
 
